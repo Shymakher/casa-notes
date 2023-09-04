@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 import { StatusTypes } from "@/types/StatusTypes";
+import NoteType from "@/types/NoteType";
 
 const dataToSendAll = JSON.stringify({
   collection: "Note",
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
     const response = await axios(configGellAll);
     const notes = response.data.documents;
 
-    const existed = notes.find((note) => url.startsWith(note.url));
+    const existed = notes.find((note: NoteType) => url.startsWith(note.url));
     if (existed) {
       throw new Error("Already exist");
     }
