@@ -74,7 +74,7 @@ export default function PreviewDialog(props: PreviewDialogProps) {
     comments,
   } = noteData;
 
-  const renderItem = (field: string, value: string) => {
+  const renderItem = (field: string, value: string | number) => {
     return (
       <div className="flex flex-col">
         <span className="scroll-m-20 text-md font-semibold tracking-tight text-slate-300">
@@ -110,28 +110,28 @@ export default function PreviewDialog(props: PreviewDialogProps) {
           </div>
 
           <div>
-            {renderItem("Title", title)}
-            {renderItem("Description", description)}
+            {renderItem("Title", title || "")}
+            {renderItem("Description", description || "")}
             {renderItem("Status", status)}
           </div>
         </div>
 
-        {renderItem("Comments", comments)}
+        {renderItem("Comments", comments || "")}
 
         <h3 className="text-lg font-semibold">Contacts</h3>
         <div className="flex gap-4">
-          {renderItem("Contact Primary", contactPrimary)}
-          {renderItem("Phone Number Primary", phoneNumberPrimary)}
+          {renderItem("Contact Primary", contactPrimary || "")}
+          {renderItem("Phone Number Primary", phoneNumberPrimary || "")}
         </div>
         <div className="flex gap-4">
-          {renderItem("Contact Primary", contactSecondary)}
-          {renderItem("Phone Number Primary", phoneNumberSecondary)}
+          {renderItem("Contact Primary", contactSecondary || "")}
+          {renderItem("Phone Number Primary", phoneNumberSecondary || "")}
         </div>
 
         <h3 className="text-lg font-semibold">Addtional Info</h3>
         <div className="flex gap-4">
-          {renderItem("Address", address)}
-          {renderItem("Rooms", rooms)}
+          {renderItem("Address", address || "")}
+          {renderItem("Rooms", rooms || 0)}
           <div className="flex flex-col items-center">
             <span className="scroll-m-20 text-md font-semibold tracking-tight text-slate-300">
               Level
@@ -140,8 +140,8 @@ export default function PreviewDialog(props: PreviewDialogProps) {
               {level && outOfLevels ? `${level}/${outOfLevels}` : "-"}
             </span>
           </div>
-          {renderItem("Square", square)}
-          {renderItem("Price", price)}
+          {renderItem("Square", square || 0)}
+          {renderItem("Price", price || 0)}
         </div>
 
         <Link
