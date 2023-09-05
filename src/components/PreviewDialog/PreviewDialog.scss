@@ -16,5 +16,9 @@
     overflow: scroll;
     overflow-y: auto;
     max-height: 90vh;
+
+    .mainInfo {
+      flex-direction: column;
+    }
   }
 }
