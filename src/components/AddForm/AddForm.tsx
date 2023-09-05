@@ -86,7 +86,7 @@ export default function AddForm(props: AddFormProps) {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // console.log(values);
-    props.onSaveNote(values);
+    props.onSaveNote(values as any);
   }
 
   return (
@@ -384,7 +384,7 @@ export default function AddForm(props: AddFormProps) {
             <Button
               type="button"
               variant="destructive"
-              onClick={() => onDelete(note._id)}
+              onClick={() => onDelete?.(note.id)}
             >
               Delete
             </Button>

@@ -82,11 +82,15 @@ export default function EditNote(props: EditNoteProps) {
   }
 
   useEffect(() => {
-    const getNote = async () => {
-      const response = await getNoteById(params.id);
-      setNote(response.data.response);
-    };
-    getNote();
+    try {
+      const getNote = async () => {
+        const response = await getNoteById(params.id);
+        setNote(response?.data.response);
+      };
+      getNote();
+    } catch (error) {
+      console.log("error", error);
+    }
   }, [params.id]);
 
   return (

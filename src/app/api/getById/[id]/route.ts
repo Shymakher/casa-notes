@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
+interface objProps {
+  _id: string;
+}
+
+const getProps = ({ _id, ...rest }: objProps) => ({ ...rest, id: _id });
+
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
@@ -30,9 +36,13 @@ export async function GET(
     };
 
     const response = await axios(config);
-    // console.log("NOTE", response.data.document);
+    // console.log("1 NOTE", response.data.document);
+    // console.log("2 NEW NOTE", getProps(response.data.document));
 
-    return NextResponse.json({ response: response.data.document }, { status: 200 });
+    return NextResponse.json(
+      { response: getProps(response.data.document) },
+      { status: 200 }
+    );
   } catch (error) {
     console.log("server error ->", error);
 
