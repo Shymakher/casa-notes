@@ -36,3 +36,24 @@
     transform: translateY(-50%);
   }
 }
+
+// "only" - mobile only
+@media screen and (max-width: 768px) {
+  .noteItem {
+    flex-direction: column;
+    align-items: start;
+
+    .editNote {
+      opacity: 1;
+      visibility: visible;
+      transition: all ease-in-out 0.3s;
+    }
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .additionalInfo {
+    flex-direction: column;
+    align-items: start;
+  }
+}

@@ -41,7 +41,7 @@ export default function NoteItem(noteData: NoteType) {
       </div>
 
       <div className="flex flex-col self-stretch justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 additionalInfo">
           <div className="flex flex-col items-center">
             <span className="scroll-m-20 text-md font-semibold tracking-tight text-slate-300">
               Address
