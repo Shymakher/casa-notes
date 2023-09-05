@@ -31,14 +31,14 @@ interface EditNoteProps {
 
 export default function EditNote(props: EditNoteProps) {
   const { params } = props;
-  const [note, setNote] = useState();
+  const [note, setNote] = useState<NoteType>();
   const { toast } = useToast();
   const router = useRouter();
 
   async function editNote(data: NoteType) {
     try {
       await axios.post(
-        `/api/edit/${note._id}`,
+        `/api/edit/${note?.id}`,
         {
           body: JSON.stringify({ data }),
         },
