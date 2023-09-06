@@ -42,21 +42,20 @@ export default function Home() {
 
   const [groupedNotes, setGroupedNotes] = useState<GroupedNotesType>({});
 
+  async function getAllNotes() {
+    try {
+      const response = await axios.get("/api/getAll", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Request-Headers": "*",
+        },
+      });
+
+      setGroupedNotes(response.data.response);
+    } catch (error) {}
+  }
   useEffect(() => {
-    async function getAllNotes() {
-      try {
-        const response = await axios.get("/api/getAll", {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "Access-Control-Request-Headers": "*",
-          },
-        });
-
-        setGroupedNotes(response.data.response);
-      } catch (error) {}
-    }
-
     getAllNotes();
   }, []);
 
@@ -68,7 +67,7 @@ export default function Home() {
         </Button>
       </div>
 
-      <TabsNotes groupedNotes={groupedNotes} />
+      <TabsNotes groupedNotes={groupedNotes} onGetAllNotes={getAllNotes} />
     </div>
   );
 }

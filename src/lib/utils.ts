@@ -9,6 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const customKeysOrder: StatusTypes[] = [
+  StatusTypes.gonnaVisit,
   StatusTypes.new,
   StatusTypes.viewed,
   StatusTypes.hadACall,

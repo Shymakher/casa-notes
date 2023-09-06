@@ -6,4 +6,5 @@ export const statusColor: Record<StatusTypes, { color: string }> = {
   [StatusTypes.visited]: { color: "#FF9800" },
   [StatusTypes.hadACall]: { color: "#9C27B0" },
   [StatusTypes.notRelevant]: { color: "#F44336" },
+  [StatusTypes.gonnaVisit]: { color: "#707ec9" },
 };

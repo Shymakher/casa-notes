@@ -14,7 +14,6 @@ import NoteType from "@/types/NoteType";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -24,10 +23,10 @@ interface PreviewDialogProps {
   children: string | JSX.Element | JSX.Element[];
   noteData: NoteType;
   onDelete?: (id: string) => void;
+  onGetAllNotes: () => void;
 }
 
 export default function PreviewDialog(props: PreviewDialogProps) {
-  const router = useRouter();
   const { toast } = useToast();
 
   async function deleteNote(id: string) {
@@ -45,7 +44,7 @@ export default function PreviewDialog(props: PreviewDialogProps) {
         description: "The Casa have been deleted",
       });
 
-      router.refresh();
+      props.onGetAllNotes();
     } catch (error) {
       console.log("error", error);
     }
@@ -54,7 +53,6 @@ export default function PreviewDialog(props: PreviewDialogProps) {
   const { children, noteData } = props;
 
   const {
-    id,
     image,
     status,
     address,

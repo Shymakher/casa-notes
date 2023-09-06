@@ -9,9 +9,13 @@ import { GroupedNotesType } from "@/types/GroupedNotes";
 
 interface TabsNotesProps {
   groupedNotes: GroupedNotesType;
+  onGetAllNotes: () => void;
 }
 
-export default function TabsNotes({ groupedNotes }: TabsNotesProps) {
+export default function TabsNotes({
+  groupedNotes,
+  onGetAllNotes,
+}: TabsNotesProps) {
   const statusKeys = Object.keys(groupedNotes) as (keyof typeof StatusTypes)[];
 
   const myTabsContent: React.ReactElement[] = [];
@@ -20,7 +24,11 @@ export default function TabsNotes({ groupedNotes }: TabsNotesProps) {
       <TabsContent key={key} value={key}>
         <ul className="flex flex-col gap-5">
           {groupedNotes[key].map((note: NoteType) => (
-            <PreviewDialog key={note.id} noteData={note}>
+            <PreviewDialog
+              key={note.id}
+              noteData={note}
+              onGetAllNotes={onGetAllNotes}
+            >
               <NoteItem {...note} />
             </PreviewDialog>
           ))}
