@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-import { prisma } from "@/db";
-import NoteItem from "@/components/NoteItem/NoteItem";
+// import { prisma } from "@/db";
 import Link from "next/link";
-import PreviewDialog from "@/components/PreviewDialog/PreviewDialog";
 import { Button } from "@/components/ui/button";
-import NoteType from "@/types/NoteType";
 import axios from "axios";
+import TabsNotes from "@/components/TabsNotes/TabsNotes";
+import { GroupedNotesType } from "@/types/GroupedNotes";
 
 // prisma.note.create({
 //   data: {
@@ -41,7 +40,8 @@ import axios from "axios";
 export default function Home() {
   // const notes = await getAllNotes();
 
-  const [notes, setNotes] = useState([]);
+  const [groupedNotes, setGroupedNotes] = useState<GroupedNotesType>({});
+
   useEffect(() => {
     async function getAllNotes() {
       try {
@@ -53,7 +53,7 @@ export default function Home() {
           },
         });
 
-        setNotes(response.data.response);
+        setGroupedNotes(response.data.response);
       } catch (error) {}
     }
 
@@ -68,17 +68,7 @@ export default function Home() {
         </Button>
       </div>
 
-      {notes && notes.length ? (
-        <ul className="flex flex-col gap-5">
-          {notes.map((note: NoteType) => (
-            <PreviewDialog key={note.id} noteData={note}>
-              <NoteItem {...note} />
-            </PreviewDialog>
-          ))}
-        </ul>
-      ) : (
-        "no data"
-      )}
+      <TabsNotes groupedNotes={groupedNotes} />
     </div>
   );
 }

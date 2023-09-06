@@ -1,3 +1,5 @@
+import { StatusTypes } from "./StatusTypes";
+
 export default interface NoteType {
   id: string;
   address: string | null;
@@ -6,7 +8,7 @@ export default interface NoteType {
   outOfLevels: number | null;
   square: number | null;
   price: number | null;
-  status: string;
+  status: StatusTypes;
   title: string | null;
   description: string | null;
   source: string;

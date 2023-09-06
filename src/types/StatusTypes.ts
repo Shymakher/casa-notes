@@ -3,4 +3,5 @@ export enum StatusTypes {
   viewed = "Viewed",
   visited = "Visited",
   hadACall = "Had a call",
+  notRelevant = "Not relevant",
 }

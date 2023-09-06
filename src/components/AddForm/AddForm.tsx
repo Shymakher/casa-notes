@@ -218,18 +218,13 @@ export default function AddForm(props: AddFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={StatusTypes.new}>
-                    {StatusTypes.new}
-                  </SelectItem>
-                  <SelectItem value={StatusTypes.viewed}>
-                    {StatusTypes.viewed}
-                  </SelectItem>
-                  <SelectItem value={StatusTypes.visited}>
-                    {StatusTypes.visited}
-                  </SelectItem>
-                  <SelectItem value={StatusTypes.hadACall}>
-                    {StatusTypes.hadACall}
-                  </SelectItem>
+                  {(
+                    Object.keys(StatusTypes) as (keyof typeof StatusTypes)[]
+                  ).map((key) => (
+                    <SelectItem key={key} value={StatusTypes[key]}>
+                      {StatusTypes[key]}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormMessage />

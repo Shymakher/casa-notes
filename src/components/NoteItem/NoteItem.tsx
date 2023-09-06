@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NoteType from "@/types/NoteType";
 import Image from "next/image";
+import { statusColor } from "@/types/StatusTypeColor";
 
 import "./NoteItem.scss";
 
@@ -21,7 +22,12 @@ export default function NoteItem(noteData: NoteType) {
 
   return (
     <li className="flex items-center gap-4 border rounded-lg p-4 noteItem">
-      <span className="px-1 bg-slate-100 rounded-lg status">{status}</span>
+      <span
+        className="px-1 bg-slate-100 rounded-lg status"
+        style={{ backgroundColor: statusColor[status].color, color: "white" }}
+      >
+        {status}
+      </span>
 
       <Link href={`/edit/${id}`} className="editNote">
         Edit Note

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+import { groupObjectsByStatus } from "@/lib/utils";
 
 const dataToSendAll = JSON.stringify({
   collection: "Note",
@@ -10,9 +11,9 @@ const dataToSendAll = JSON.stringify({
   //   id: "$_id",
   // },
   pipeline: [
-    {
-      $sort: { updatedAt: -1 },
-    },
+    // {
+    //   $sort: { updatedAt: -1 },
+    // },
     // {
     //   $project: {
     //     _id: 0, // Exclude the original _id field
@@ -40,8 +41,10 @@ export async function GET(request: Request) {
   try {
     const response = await axios(configGellAll);
     const notes = response.data.documents;
+    const groupedNotes = groupObjectsByStatus(notes);
+    // console.log("groupedNotes ->", groupedNotes);
 
-    return NextResponse.json({ response: notes }, { status: 200 });
+    return NextResponse.json({ response: groupedNotes }, { status: 200 });
   } catch (error) {
     console.log("server error ->", error);
 
