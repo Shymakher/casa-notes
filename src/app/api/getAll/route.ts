@@ -11,9 +11,9 @@ const dataToSendAll = JSON.stringify({
   //   id: "$_id",
   // },
   pipeline: [
-    // {
-    //   $sort: { updatedAt: -1 },
-    // },
+    {
+      $sort: { updatedAt: -1 },
+    },
     // {
     //   $project: {
     //     _id: 0, // Exclude the original _id field
