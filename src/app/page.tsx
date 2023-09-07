@@ -44,16 +44,20 @@ export default function Home() {
 
   async function getAllNotes() {
     try {
-      const response = await axios.get("/api/getAll", {
+      const data = await fetch("/api/getAll", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
-          "Cache-Control": "no-cache",
+          "Cache-Control": "no-cache", // store
         },
       });
 
-      setGroupedNotes(response.data.response);
+      const { response } = await data.json();
+
+      console.log("resp");
+
+      setGroupedNotes(response);
     } catch (error) {}
   }
   useEffect(() => {
