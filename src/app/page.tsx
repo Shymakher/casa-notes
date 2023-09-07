@@ -51,6 +51,7 @@ export default function Home() {
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
           "Cache-Control": fetchCache, // store
+          "X-Vercel-Cache": fetchCache, // store
         },
       });
 
