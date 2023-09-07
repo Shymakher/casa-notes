@@ -1,6 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
+
 import axios from "axios";
 import { groupObjectsByStatus } from "@/lib/utils";
+
+export const forceRevalidate = (request: NextRequest) => {
+  const path = request.nextUrl.searchParams.get("path") || "/";
+  revalidatePath(path);
+};
 
 const dataToSendAll = JSON.stringify({
   collection: "Note",
@@ -39,7 +46,9 @@ const configGellAll = {
   data: dataToSendAll,
 };
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
+  forceRevalidate(request);
+
   try {
     const response = await axios(configGellAll);
     const notes = response.data.documents;
@@ -56,5 +65,3 @@ export async function GET(request: Request) {
     );
   }
 }
-
-export const fetchCache = "force-no-store";
