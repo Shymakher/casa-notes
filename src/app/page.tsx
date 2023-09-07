@@ -25,8 +25,6 @@ import { GroupedNotesType } from "@/types/GroupedNotes";
 //   },
 // });
 
-// export const dynamic = "force-dynamic"; //  no-cache
-
 // async function getAllNotes() {
 //   return await prisma.note.findMany({
 //     orderBy: [
@@ -44,21 +42,15 @@ export default function Home() {
 
   async function getAllNotes() {
     try {
-      const data = await fetch("/api/getAll", {
+      const response = await axios.get("/api/getAll", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
-          // "Cache-Control": "no-store", // store
-          // cache: "no-store",
         },
       });
 
-      const { response } = await data.json();
-
-      console.log("resp");
-
-      setGroupedNotes(response);
+      setGroupedNotes(response.data.response);
     } catch (error) {}
   }
   useEffect(() => {
