@@ -33,7 +33,7 @@ const configGellAll = {
     "Content-Type": "application/json",
     "Access-Control-Request-Headers": "*",
     // "Cache-Control": "no-cache",
-    cache: "no-store",
+    // cache: "no-store",
     "api-Key": process.env.MONGO_DB_API_KEY,
   },
   data: dataToSendAll,
