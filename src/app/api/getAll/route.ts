@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import axios from "axios";
 import { groupObjectsByStatus } from "@/lib/utils";
 
-export const forceRevalidate = (request: NextRequest) => {
+const forceRevalidate = (request: NextRequest) => {
   const path = request.nextUrl.searchParams.get("path") || "/";
   revalidatePath(path);
 };
