@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import TabsNotes from "@/components/TabsNotes/TabsNotes";
 import { GroupedNotesType } from "@/types/GroupedNotes";
-import { fetchCache } from "./api/getAll/route";
 
 // prisma.note.create({
 //   data: {
@@ -50,8 +49,8 @@ export default function Home() {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
-          "Cache-Control": fetchCache, // store
-          "X-Vercel-Cache": fetchCache, // store
+          // "Cache-Control": "no-store", // store
+          cache: "no-store",
         },
       });
 
