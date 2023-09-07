@@ -50,7 +50,7 @@ export default function Home() {
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
           // "Cache-Control": "no-store", // store
-          cache: "no-store",
+          // cache: "no-store",
         },
       });
 
