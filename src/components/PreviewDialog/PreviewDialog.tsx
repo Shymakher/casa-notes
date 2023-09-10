@@ -78,7 +78,7 @@ export default function PreviewDialog(props: PreviewDialogProps) {
         <span className="scroll-m-20 text-md font-semibold tracking-tight text-slate-300">
           {field}
         </span>
-        <span>{value || "-"}</span>
+        <span className="break-all">{value || "-"}</span>
       </div>
     );
   };

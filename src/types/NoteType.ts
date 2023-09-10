@@ -19,6 +19,8 @@ export default interface NoteType {
   contactSecondary: string | null;
   phoneNumberSecondary: string | null;
   comments: string | null;
+  isParking: boolean | null;
+  isRealtor: boolean | null;
   // createdAt: string;
   // updatedAt: string;
 }

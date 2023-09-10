@@ -18,16 +18,44 @@ export default function NoteItem(noteData: NoteType) {
     price,
     url,
     comments,
+    isParking,
+    isRealtor,
   } = noteData;
 
   return (
-    <li className="flex items-center gap-4 border rounded-lg p-4 noteItem">
-      <span
-        className="px-1 bg-slate-100 rounded-lg status"
-        style={{ backgroundColor: statusColor[status].color, color: "white" }}
-      >
-        {status}
-      </span>
+    <li className="flex items-center gap-4 border rounded-lg p-4 shadow-sm noteItem">
+      <div className="flex gap-2 tags">
+        <span
+          className="px-1 bg-slate-100 rounded-lg"
+          style={{ backgroundColor: statusColor[status].color, color: "white" }}
+        >
+          {status}
+        </span>
+
+        {isRealtor && (
+          <span
+            className="px-1 bg-slate-100 rounded-lg"
+            style={{
+              backgroundColor: "black",
+              color: "white",
+            }}
+          >
+            Realtor
+          </span>
+        )}
+
+        {isParking && (
+          <span
+            className="px-1 bg-slate-100 rounded-lg"
+            style={{
+              backgroundColor: "black",
+              color: "white",
+            }}
+          >
+            Parking
+          </span>
+        )}
+      </div>
 
       <Link href={`/edit/${id}`} className="editNote">
         Edit Note
@@ -103,7 +131,7 @@ export default function NoteItem(noteData: NoteType) {
           <span className="scroll-m-20 text-md font-semibold tracking-tight text-slate-300">
             Comments:
           </span>
-          <span>{comments || "-"}</span>
+          <span className="break-all">{comments || "-"}</span>
         </div>
       </div>
     </li>
