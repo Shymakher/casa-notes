@@ -38,7 +38,7 @@ export default function TabsNotes({
 
     return (
       <TabsTrigger key={key} value={key}>
-        {key}
+        {`${key}-${groupedNotes[key].length}`}
       </TabsTrigger>
     );
   });
