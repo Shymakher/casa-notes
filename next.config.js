@@ -21,6 +21,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "lookaside.fbsbx.com", // facebook
       },
+      {
+        protocol: "https",
+        hostname: "scontent.fhfa2-2.fna.fbcdn.net", // facebook
+      },
     ],
   },
 };

@@ -19,7 +19,7 @@ const dataToSendAll = JSON.stringify({
   // },
   pipeline: [
     {
-      $sort: { updatedAt: -1 },
+      $sort: { createdAt: -1 },
     },
     // {
     //   $project: {
