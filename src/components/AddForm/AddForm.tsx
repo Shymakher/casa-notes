@@ -3,6 +3,7 @@
 import { StatusTypes } from "@/types/StatusTypes";
 import NoteType from "@/types/NoteType";
 
+import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -54,6 +55,8 @@ const formSchema = z.object({
   contactSecondary: z.string(),
   phoneNumberSecondary: z.string(),
   comments: z.string(),
+  isParking: z.boolean(),
+  isRealtor: z.boolean(),
 });
 
 export default function AddForm(props: AddFormProps) {
@@ -80,6 +83,8 @@ export default function AddForm(props: AddFormProps) {
       contactSecondary: note?.contactSecondary || "",
       phoneNumberSecondary: note?.phoneNumberSecondary || "",
       comments: note?.comments || "",
+      isParking: note?.isParking || false,
+      isRealtor: note?.isRealtor || false,
     },
   });
   // 2. Define a submit handler.
@@ -92,6 +97,40 @@ export default function AddForm(props: AddFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="isRealtor"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Realtor</FormLabel>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isParking"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Parking</FormLabel>
+              <FormControl>
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name="address"
